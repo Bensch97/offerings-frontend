@@ -6,22 +6,23 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import Divider from '@material-ui/core/Divider';
-
-
-
+import styled, { css } from 'styled-components'
+import burger from './images/131.jpg'
+import burrito from './images/burito.jpg'
 
 const styles = theme => ({
     root: {
         display: 'flex',
         flexWrap: 'no-wrap',
-        justifyContent: 'start',
+        justifyContent: 'flex-start',
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
+        marginLeft: '5%',
+        marginRight: '5%'
     },
     gridList: {
         flexWrap: 'nowrap',
-        transform: 'translateZ(0)'
+        transform: 'translateZ(0)',
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54',
@@ -33,30 +34,23 @@ const styles = theme => ({
         background:
           'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
       },
-    Nearby: {
-        width: 77,
-        height: 28,
-        font-family: Roboto,
-        font-size: 24,
-        font-weight: bold,
-        font-style: normal,
-        font-stretch: normal,
-        line-height: normal,
-        letter-spacing: normal,
-        color: #020202;
-      }
-});
+    })
 
+const Divider = styled.hr`
+    color: gray;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.12);
+`
 
 
 const tileData= [
     {
-        img: '131.jpg',
+        img:  burger ,
         title: 'Burger',
         author: 'Ben'
     },
     {
-        img: 'burito.jpg',
+        img:  burrito ,
         title: 'Burito',
         author: 'Matt'
     }
@@ -68,8 +62,7 @@ function SingleLineGridList(props) {
 return (
     <div className={classes.root}>
         <div>
-          <h1 class='Nearby' > {props.category} </h1>
-        <Divider />
+        <Divider/>
         <GridList col={2.5} className={classes.gridList}>
             {tileData.map(tile => (
                 <GridListTile style={{width: 168}} key={tile.img}>

@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import SingleLineGridList from './components/Imagegrid.jsx'
+import SingleLineGridList from './components/ImageGrid'
+import GreetAndHero from './components/GreetAndHero'
+import GridListHeader from './components/CategoryHeaders';
+import MenuAppBar from './components/TopAppBar'
 
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <SingleLineGridList category='Nearby'/>
-        <SingleLineGridList category="Recently posted"/>
-        <SingleLineGridList category='Your offerings'/>
+        <MenuAppBar/>
+        <GreetAndHero />
+        <GridListHeader category='Nearby' linky='SEE ALL'/>
+        <SingleLineGridList/>
+        <GridListHeader category="Recently posted" linky='SEE ALL'/>
+        <SingleLineGridList/>
+        <GridListHeader category='Your offerings' linky='NEW'/>
+        <SingleLineGridList/>
       </React.Fragment>
     );
   }
