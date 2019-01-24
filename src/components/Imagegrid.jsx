@@ -4,9 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import Divider from '@material-ui/core/Divider';
 
 
 
@@ -14,8 +14,8 @@ import InfoIcon from '@material-ui/icons/Info';
 const styles = theme => ({
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        flexWrap: 'no-wrap',
+        justifyContent: 'start',
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
     },
@@ -33,6 +33,18 @@ const styles = theme => ({
         background:
           'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
       },
+    Nearby: {
+        width: 77,
+        height: 28,
+        font-family: Roboto,
+        font-size: 24,
+        font-weight: bold,
+        font-style: normal,
+        font-stretch: normal,
+        line-height: normal,
+        letter-spacing: normal,
+        color: #020202;
+      }
 });
 
 
@@ -55,9 +67,9 @@ function SingleLineGridList(props) {
 
 return (
     <div className={classes.root}>
-        <GridListTile key="Subheader" style={{ height: 'auto' }}>
-          <ListSubheader component="div" > {props.category} </ListSubheader>
-        </GridListTile>
+        <div>
+          <h1 class='Nearby' > {props.category} </h1>
+        <Divider />
         <GridList col={2.5} className={classes.gridList}>
             {tileData.map(tile => (
                 <GridListTile style={{width: 168}} key={tile.img}>
@@ -67,16 +79,17 @@ return (
                         classes={{
                             root: classes.titleBar,
                             title: classes.title,
-                          }}
+                        }}
                         actionIcon={
                             <IconButton className={classes.icon}>
                                 <InfoIcon />
                             </IconButton>
                         }
-                    />
+                        />
                 </GridListTile>
             ))}
         </GridList>
+        </div>
     </div>
     );
 }
