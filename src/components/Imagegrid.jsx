@@ -61,22 +61,22 @@ const tileData= [
     {
         img:  kebab ,
         title: 'Kebab',
-        author: 'Matt'
+        author: 'AJ'
     },
     {
         img:  pancake ,
         title: 'Pancake',
-        author: 'Matt'
+        author: 'Sam'
     },
     {
         img:  spagette ,
         title: 'Spagette',
-        author: 'Matt'
+        author: 'Ethan'
     },
     {
         img:  taco ,
         title: 'Taco',
-        author: 'Matt'
+        author: 'Sarah'
     }
 ]
 
@@ -87,12 +87,13 @@ return (
     <div className={classes.root}>
         <div>
         <Divider/>
-        <GridList col={2.5} className={classes.gridList}>
+        <GridList className={classes.gridList} col={2.5}>
             {tileData.map(tile => (
-                <GridListTile style={{width: 168}} key={tile.img}>
+                <GridListTile key={tile.img} cols={.5}>
                     <img src={tile.img} alt={tile.title} />
                     <GridListTileBar
                         title={tile.title}
+                        subtitle={<span>{tile.author}</span>}
                         classes={{
                             root: classes.titleBar,
                             title: classes.title,

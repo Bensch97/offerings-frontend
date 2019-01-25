@@ -43,11 +43,10 @@ render() {
     <Container>
         <div>
         <Sharing>share food with neighbors</Sharing>
-        <Description>offerings helps you find food from your own
-        <br/>
-        neighbors, and share food – so nothing goes
-        <br/>
-        to waste
+        <Description>
+            offerings helps you find food from your own
+            neighbors, and share food – so nothing goes
+            to waste
         </Description>
         </div>
         <HeroImage src={foodImage}

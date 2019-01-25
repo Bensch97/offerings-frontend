@@ -10,15 +10,15 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <MenuAppBar/>
-        <GreetAndHero />
-        <GridListHeader category='Nearby' linky='SEE ALL'/>
-        <SingleLineGridList/>
-        <GridListHeader category="Recently posted" linky='SEE ALL'/>
-        <SingleLineGridList/>
-        <GridListHeader category='Your offerings' linky='NEW'/>
-        <SingleLineGridList/>
-      </React.Fragment>
+          <MenuAppBar/>
+          <GreetAndHero />
+          <GridListHeader category='Nearby' linky='SEE ALL'/>
+          <SingleLineGridList/>
+          <GridListHeader category="Recently posted" linky='SEE ALL'/>
+          <SingleLineGridList/>
+          <GridListHeader category='Your offerings' linky='NEW'/>
+          <SingleLineGridList/>
+        </React.Fragment>
     );
   }
 }
