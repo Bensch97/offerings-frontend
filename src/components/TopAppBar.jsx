@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import styled, { css } from 'styled-components';
 
 const styles = {
     root: {
@@ -25,6 +26,11 @@ const styles = {
       marginRight: 20,
     },
   };
+
+const RightContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
 
   class MenuAppBar extends React.Component {
     state = {
@@ -59,14 +65,18 @@ const styles = {
               label={auth ? 'Logout' : 'Login'}
             />
           </FormGroup> */}
-          <AppBar position="static">
+          <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
+              <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
                 Offerings
               </Typography>
               {auth && (
-                <div>
-                  <IconButton
+              <RightContainer>
+                  <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
+                        GIVE FEEDBACK
+                    </Typography>
+                  <IconButton variant="h6" marginLeft="20" color="inherit" className={classes.grow}
+                  
                     aria-owns={open ? 'menu-appbar' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleMenu}
@@ -88,10 +98,10 @@ const styles = {
                     open={open}
                     onClose={this.handleClose}
                   >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Signout</MenuItem>
                   </Menu>
-                </div>
+                </RightContainer>
               )}
             </Toolbar>
           </AppBar>

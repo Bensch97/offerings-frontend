@@ -9,6 +9,10 @@ import InfoIcon from '@material-ui/icons/Info';
 import styled, { css } from 'styled-components'
 import burger from './images/131.jpg'
 import burrito from './images/burito.jpg'
+import kebab from './images/kebab.jpg'
+import pancake from './images/Pancake.jpeg'
+import spagette from './images/spagette.jpg'
+import taco from './images/taco.jpg'
 
 const styles = theme => ({
     root: {
@@ -52,6 +56,26 @@ const tileData= [
     {
         img:  burrito ,
         title: 'Burito',
+        author: 'Matt'
+    },
+    {
+        img:  kebab ,
+        title: 'Kebab',
+        author: 'Matt'
+    },
+    {
+        img:  pancake ,
+        title: 'Pancake',
+        author: 'Matt'
+    },
+    {
+        img:  spagette ,
+        title: 'Spagette',
+        author: 'Matt'
+    },
+    {
+        img:  taco ,
+        title: 'Taco',
         author: 'Matt'
     }
 ]
