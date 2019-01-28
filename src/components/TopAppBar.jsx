@@ -68,7 +68,7 @@ const RightContainer = styled.div`
           <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
               <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
-                Offerings
+                { this.props.header }
               </Typography>
               {auth && (
               <RightContainer>

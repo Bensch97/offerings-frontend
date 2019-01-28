@@ -9,7 +9,7 @@ class Homepage extends Component {
     render() {
       return (
         <React.Fragment>
-            <MenuAppBar/>
+            <MenuAppBar header='Offerings' />
             <GreetAndHero />
             <GridListHeader category='Nearby' linky='SEE ALL'/>
             <SingleLineGridList/>
