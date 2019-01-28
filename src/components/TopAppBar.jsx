@@ -65,7 +65,7 @@ const RightContainer = styled.div`
               label={auth ? 'Logout' : 'Login'}
             />
           </FormGroup> */}
-          <AppBar position="static" style={{backgroundolor:'Green'}}>
+          <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
               <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
                 Offerings
