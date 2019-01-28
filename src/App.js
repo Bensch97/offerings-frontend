@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
-import SingleLineGridList from './components/ImageGrid'
-import GreetAndHero from './components/GreetAndHero'
-import GridListHeader from './components/CategoryHeaders';
-import MenuAppBar from './components/TopAppBar'
+import Homepage from './pages/Homepage.jsx'
 
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
-          <MenuAppBar/>
-          <GreetAndHero />
-          <GridListHeader category='Nearby' linky='SEE ALL'/>
-          <SingleLineGridList/>
-          <GridListHeader category="Recently posted" linky='SEE ALL'/>
-          <SingleLineGridList/>
-          <GridListHeader category='Your offerings' linky='NEW'/>
-          <SingleLineGridList/>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' render={() => <Homepage />} />
+          </Switch>
+        </BrowserRouter>
         </React.Fragment>
     );
   }
