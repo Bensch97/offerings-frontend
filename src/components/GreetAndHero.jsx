@@ -6,18 +6,8 @@ import backup1 from "./images/bitmap@2x.png"
 import backup2 from "./images/bitmap@3x.png"
 
 const HeroImage = styled.img`
-    width: 645px;
-    height: 301px;
-    && {
-        @media(max-width: 600px) {
-            object-position: right;
-        }
-    }
-    && {
-        @media(min-width: 600px) {
-            object-position: left;
-        }
-        }
+    width: 90vw;
+    height: 40vh;
 `
 const Sharing = styled.p`
     font-family: Roboto;
@@ -28,16 +18,7 @@ const Sharing = styled.p`
     line-height: normal;
     letter-spacing: normal;
     color: #373504;
-    && {
-        @media(max-width: 600px) {
-            object-position: left;
-        }
-    }
-    && {
-        @media(min-width: 600px) {
-            object-position: right;
-        }
-        }
+
 `
 const Description = styled.p`
     font-family: Roboto;
@@ -55,9 +36,22 @@ const Description = styled.p`
     }
 `
 const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin: 5%
+    && {
+        @media(min-width: 600px) {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin: 5%;
+        }
+    }
+    && {
+        @media(max-width: 600px) {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            margin: 5%;
+        }
+    }
 `
 
 class GreetAndHero extends React.Component {
