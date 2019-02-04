@@ -15,7 +15,7 @@ const styles = {
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
     minWidth: 275,
-    height: '40vh',
+    height: '40%',
     marginTop: '5vh',
     marginLeft: '10%',
     marginRight: '10%'
