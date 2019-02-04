@@ -9,15 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import styled, { css } from 'styled-components';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green'
 
 const styles = theme => ({
-  palette: {
-    primary: {
-      main: 'green',
-    }
-  },
   cardContainer: {
     display: 'flex',
     justifyContent: 'center'

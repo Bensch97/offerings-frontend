@@ -3,7 +3,6 @@ import '../App.css';
 import SingleLineGridList from '../components/ImageGrid'
 import GreetAndHero from '../components/GreetAndHero'
 import GridListHeader from '../components/CategoryHeaders';
-import MenuAppBar from '../components/TopAppBar'
 
 class Homepage extends Component {
     render() {
