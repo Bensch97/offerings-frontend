@@ -9,19 +9,34 @@ import Typography from '@material-ui/core/Typography';
 import styled, { css } from 'styled-components';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
+import { createMuiTheme } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green'
 
 const styles = theme => ({
+  palette: {
+    primary: {
+      main: 'green',
+    }
+  },
+  cardContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
   card: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
+    width: '50vw',
+    height: '75vh',
     flexWrap: 'nowrap',
-    marginBottom: '10%',
     marginTop: '10%',
-    marginLeft: '20%',
-    marginRight: '20%',
+    marginBottom: '10%',
+    alignContent: 'space-between',
+  },
+  cardChildren: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -38,24 +53,47 @@ const styles = theme => ({
   pos: {
     marginBottom: 12,
   },
+  bootstrapRoot: {
+    display: 'flex',
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontSize: 16,
+    width: '25vw',
+    height: '5vh',
+    border: '1px solid',
+    lineHeight: 1.5,
+    backgroundColor: 'Green',
+    borderColor: 'Green',
+  },
 });
 
-const ImageDrop = styled.input`
-    display: flex;
-    backgroundColor: gray;
-
+// This is to be converted to an upload image area, is now purely stylistic
+const ImageDrop = styled.div`
+    background: #F5F5F5;
+    width: 100vw;
+    height: 20vh;
 `
+function MaterialIcon(props) {
+  return (
+    <i class='material-icons'>
+      {props.icon}
+    </i>
+  )
+}
 
-const TextIn = styled.input
 
 function SimpleCard(props) {
   const { classes } = props;
   const bull = <span className={classes.bullet}>•</span>;
+  console.log(props.theme)
 
   return (
+  <div className={classes.cardContainer}>
     <Card className={classes.card}>
-      <CardContent>
-          <ImageDrop type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg"/>
+        <MaterialIcon icon='insert_photo'/>
+      <ImageDrop>
+      </ImageDrop>
+      <CardContent className={classes.cardChildren}>
         <TextField
         defaultValue="Title"
         className={classes.textField}
@@ -69,11 +107,19 @@ function SimpleCard(props) {
         className={classes.textField}
         variant='outlined'
             />
+        <p className={classes.textField}>Make sure to include quantity e.g. 50 lbs, 20 ct</p>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.bootstrapRoot}
+      >
+        Create Post
+      </Button>
       </CardActions>
     </Card>
+  </div>
   );
 }
 
