@@ -8,10 +8,18 @@ import backup2 from "./images/bitmap@3x.png"
 const HeroImage = styled.img`
     width: 645px;
     height: 301px;
-    object-fit: contain;
+    && {
+        @media(max-width: 600px) {
+            object-position: right;
+        }
+    }
+    && {
+        @media(min-width: 600px) {
+            object-position: left;
+        }
+        }
 `
 const Sharing = styled.p`
-  
     font-family: Roboto;
     font-size: 36px;
     font-weight: bold;
@@ -20,6 +28,16 @@ const Sharing = styled.p`
     line-height: normal;
     letter-spacing: normal;
     color: #373504;
+    && {
+        @media(max-width: 600px) {
+            object-position: left;
+        }
+    }
+    && {
+        @media(min-width: 600px) {
+            object-position: right;
+        }
+        }
 `
 const Description = styled.p`
     font-family: Roboto;
@@ -30,6 +48,11 @@ const Description = styled.p`
     line-height: 1.5;
     letter-spacing: normal;
     color: rgba(0, 0, 0, 0.54);
+    && {
+        @media(max-width: 600px) {
+            display: none;
+        }
+    }
 `
 const Container = styled.div`
     display: flex;
