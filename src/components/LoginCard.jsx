@@ -57,6 +57,7 @@ const styles = {
 
 function LoginCard(props) {
   const { classes } = props;
+  const profileGetURL = "http://0.0.0.0:8000/api/v1/profile/"
 
   return (
     <Card className={classes.card}>
@@ -74,19 +75,20 @@ function LoginCard(props) {
             defaultValue="Password"
             className={classes.textField}
                 />
+        <div className={classes.ButtonContainer}>
+          <Button
+            variant="contained"
+            color="primary"
+            type='submit'
+            className={classes.bootstrapRoot}
+          >
+            Login
+          </Button>
+            <br />
+            <a href='/signup'>Don't have an account? Sign up!</a>
+        </div>
         </form>
       <CardActions>
-    <div className={classes.ButtonContainer}>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.bootstrapRoot}
-      >
-        Login
-      </Button>
-      <br />
-      <a href='/signup'>Don't have an account? Sign up!</a>
-    </div>
       </CardActions>
     </Card>
   );
