@@ -59,6 +59,7 @@ const styles = {
   }
 };
 
+
 function SignupCard(props) {
   const { classes } = props;
 
