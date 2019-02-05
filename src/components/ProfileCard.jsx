@@ -18,6 +18,7 @@ const styles = {
       display: 'flex',
       flexDirection: 'column',
       alignContent: 'center',
+      alignItems: 'center',
       justifyContent: 'flex-start',
       flexWrap: 'wrap',
       width: '55%',
@@ -57,17 +58,22 @@ const styles = {
         width: '100%',
         flexDirection: 'column',
         alignItems: 'center',
+        marginTop: '3vh',
+        marginBottom: '5vh'
     },
     signupForm: {
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '5%',
-    }
+    },
   };
 
   function MaterialIcon(props) {
     return (
-      <i class='material-icons'>
+      <i class='material-icons md-84' style={{background: 'lightgrey',
+                                              borderRadius: '50%',
+                                              marginTop: '3vh',
+                                              marginBottom: '1vh'}}>
         {props.icon}
       </i>
     )
@@ -79,6 +85,7 @@ const styles = {
     return (
     <div className={classes.cardContainer}>
       <Card className={classes.card}>
+        <MaterialIcon icon='face'/>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
             CHANGE YOUR PROFILE
           </Typography>
