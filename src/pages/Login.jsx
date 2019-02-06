@@ -26,7 +26,7 @@ class LoginPage extends React.Component {
         console.log("fetching...")
         // Object Destructuring ES6 
         const { username, password } = this.state
-        fetch("http://localhost:8000/api/v1/users/",
+        fetch("http://localhost:8000/api-auth/login/",
             {
                 method: 'POST',
                 headers: {
@@ -53,7 +53,7 @@ class LoginPage extends React.Component {
 
                 <LoginCard 
                     handleInputChange={ this.handleInputChange } 
-                    handleLogin = { this.handleLogin }
+                    handleLogin={ this.handleLogin }
                 />
 
         )

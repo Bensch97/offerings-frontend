@@ -55,23 +55,24 @@ const styles = {
   }
 };
 
-class LoginCard extends React.Component {
+//object destructuring syntax
+function LoginCard({ classes, handleInputChange, handleLogin }) {
 
-  render () { 
+
     return (
-      <Card className={this.props.card}>
-          <Typography className={this.props.title} color="textSecondary" gutterBottom>
+      <Card className={classes.card}>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
             Log in to Offerings
           </Typography>
           <br />
           <form>
-              <TextField onChange={ this.props.handleInputChange } id="username" defaultValue="Username" className={this.props.textField}/>
+              <TextField onChange={ handleInputChange } id="username" defaultValue="Username" className={classes.textField}/>
               <br />
-              <TextField onChange={ this.props.handleInputChange } id="password" defaultValue="Password" className={this.props.textField}/>
+              <TextField onChange={ handleInputChange } id="password" defaultValue="Password" className={classes.textField}/>
           </form>
         <CardActions>
-      <div className={this.props.ButtonContainer}>
-        <Button onClick={ this.props.handleLogin } variant="contained" color="primary" className={this.props.bootstrapRoot} >
+      <div className={classes.ButtonContainer}>
+        <Button onClick={ handleLogin } variant="contained" color="primary" className={classes.bootstrapRoot} >
           Login
         </Button>
         <br />
@@ -81,7 +82,7 @@ class LoginCard extends React.Component {
       </Card>
     );
   }
-}
+
 
 LoginCard.propTypes = {
   classes: PropTypes.object.isRequired,
