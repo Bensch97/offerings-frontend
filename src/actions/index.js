@@ -1,4 +1,4 @@
-export const LOGIN = 'UNLIKE_MESSAGE';
+export const LOGIN = 'LOGIN';
 
 
 export const login = (token) => {

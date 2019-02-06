@@ -32,14 +32,14 @@ class App extends Component {
         <MuiThemeProvider theme={theme}>
           <MuiStyledBridge> 
             <MenuAppBar>
-            <BrowserRouter>
+            
               <Switch>
                 <Route exact path='/' render={() => <Homepage />} />
                 <Route exact path='/create_offering' render={() => <CreateOffering />} />
                 <Route exact path='/login' render={() => <LoginPage />} />
                 <Route exact path='/signup' render={() => <SignupPage />} />
               </Switch>
-            </BrowserRouter>
+              
             </MenuAppBar>
           </MuiStyledBridge>
           </MuiThemeProvider>
