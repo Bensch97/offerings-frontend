@@ -55,41 +55,32 @@ const styles = {
   }
 };
 
-function LoginCard(props) {
-  const { classes } = props;
+class LoginCard extends React.Component {
 
-  return (
-    <Card className={classes.card}>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Log in to Offerings
-        </Typography>
+  render () { 
+    return (
+      <Card className={this.props.card}>
+          <Typography className={this.props.title} color="textSecondary" gutterBottom>
+            Log in to Offerings
+          </Typography>
+          <br />
+          <form>
+              <TextField onChange={ this.props.handleInputChange } id="username" defaultValue="Username" className={this.props.textField}/>
+              <br />
+              <TextField onChange={ this.props.handleInputChange } id="password" defaultValue="Password" className={this.props.textField}/>
+          </form>
+        <CardActions>
+      <div className={this.props.ButtonContainer}>
+        <Button onClick={ this.props.handleLogin } variant="contained" color="primary" className={this.props.bootstrapRoot} >
+          Login
+        </Button>
         <br />
-        <form>
-            <TextField
-            defaultValue="Username"
-            className={classes.textField}
-                />
-            <br />
-            <TextField
-            defaultValue="Password"
-            className={classes.textField}
-                />
-        </form>
-      <CardActions>
-    <div className={classes.ButtonContainer}>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.bootstrapRoot}
-      >
-        Login
-      </Button>
-      <br />
-      <a href='/signup'>Don't have an account? Sign up!</a>
-    </div>
-      </CardActions>
-    </Card>
-  );
+        <a href='/signup'>Don't have an account? Sign up!</a>
+      </div>
+        </CardActions>
+      </Card>
+    );
+  }
 }
 
 LoginCard.propTypes = {
