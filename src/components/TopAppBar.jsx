@@ -110,7 +110,7 @@ function MaterialIcon(props) {
                 <ListItemText>Home</ListItemText>
               </ListItem>
               <ListItem>
-                <ListItemIcon>{<MaterialIcon icon='report_problem' />}</ListItemIcon>
+                <a href={"mailto: developer@kenzie.academy"}><ListItemIcon>{<MaterialIcon icon='report_problem' />}</ListItemIcon></a>
                 <ListItemText>Give feedback</ListItemText>
               </ListItem>
               <ListItem>
