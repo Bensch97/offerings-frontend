@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import './App.css';
@@ -12,6 +12,7 @@ import { object } from 'prop-types';
 import styled from 'styled-components';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import { connect } from 'react-redux';
 
 
 const theme = createMuiTheme({
@@ -34,12 +35,12 @@ class App extends Component {
             <MenuAppBar>
             
               <Switch>
-                <Route exact path='/' render={() => <Homepage />} />
-                <Route exact path='/create_offering' render={() => <CreateOffering />} />
-                <Route exact path='/login' render={() => <LoginPage />} />
-                <Route exact path='/signup' render={() => <SignupPage />} />
+                <Route exact path='/' render={() => <Homepage {...this.props}/>} />
+                <Route exact path='/create_offering' render={() => <CreateOffering {...this.props}/>} />
+                <Route exact path='/login' render={() => <LoginPage {...this.props}/>} />
+                <Route exact path='/signup' render={() => <SignupPage {...this.props}/>} />
               </Switch>
-              
+
             </MenuAppBar>
           </MuiStyledBridge>
           </MuiThemeProvider>
@@ -47,5 +48,10 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token != null
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
