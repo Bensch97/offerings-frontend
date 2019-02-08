@@ -10,6 +10,9 @@ import { reducer } from './store/reducers';
 import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk';
 
+//React-Cookie
+import { CookiesProvider } from 'react-cookie';
+
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(reducer, composeEnhances(
@@ -17,11 +20,13 @@ const store = createStore(reducer, composeEnhances(
 ));
 
 const app = (
-    <BrowserRouter>
-        <Provider store={ store }>
-            <App />
-        </Provider>
-    </BrowserRouter>
+    <CookiesProvider>
+        <BrowserRouter>
+            <Provider store={ store }>
+                <App />
+            </Provider>
+        </BrowserRouter>
+    </CookiesProvider>
 )
 
 ReactDOM.render(app, document.getElementById('root'));

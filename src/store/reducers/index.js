@@ -4,14 +4,15 @@ import { updatedObject } from '../utility';
 const initialState = {
     token: null,
     error: null,
-    loading: false
-
+    loading: false,
+    csrfToken: null,
 }
 
 const authStart = (state, action) => {
     return updatedObject(state, {
         error: null, 
-        loading: true
+        loading: true,
+        csrfToken: action.csrfToken
     });
 }
 
@@ -19,7 +20,7 @@ const authSuccess = (state, action) => {
     return updatedObject(state, {
         token: action.token,
         error: null, 
-        loading: true
+        loading: true,
     });
 }
 

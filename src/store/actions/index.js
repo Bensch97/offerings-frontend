@@ -1,12 +1,15 @@
-import * as actionTypes from './actiontypes.js'
-import axios from axios;
+import * as actionTypes from './actionTypes.js'
+import axios from 'axios';
 
-// export const login = (token) => {
-//     return {
-//         type: LOGIN,
-//         token: token,
-//     }
+
+// const setAxiosDefaults = () => {
+//     axios.defaults.xsrfCookieName = 'csrftoken'
+//     console.log(axios.defaults.xsrfCookieName)
+//     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+//     console.log(axios.defaults.xsrfHeaderName)
 // };
+// setAxiosDefaults();
+
 
 export const authStart = () => {
     return {
@@ -37,7 +40,7 @@ export const logout = () => {
     };
 } 
 
-export const checkAuthTimeout = expirationDate => {
+export const checkAuthTimeout = expirationTime => {
     return dispatch => {
         setTimeout(() => {
             dispatch(logout())
@@ -45,12 +48,20 @@ export const checkAuthTimeout = expirationDate => {
     }
 }
 
-export const authLogin = (username, password) => {
+
+export const authLogin = (username, password, csrfToken) => {
+    
     return dispatch => {
         dispatch(authStart());
+        const headers = {
+            'X-CSRFToken': csrfToken
+        }
         axios.post('http://127.0.0.1:8000/api-auth/login/', {
             username: username,
             password: password
+        }, {
+            mode: 'cors',
+            headers: headers
         })
         .then(res => {
             const token = res.data.key;
@@ -88,5 +99,22 @@ export const authSignup = (username, email, password, first_name, last_name) => 
         .catch(err => {
             dispatch(authFail(err))
         })
+    }
+}
+// Checks State => ? logs out if there is no token : logs in 
+export const authCheckState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        if (token === undefined) {
+            dispatch(logout());
+        } else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            if ( expirationDate <= new Date() ) {
+                dispatch(logout());
+            } else {
+                dispatch(authSuccess(token));
+                dispatch(checkAuthTimeout( (expirationDate.getTime() - new Date().getTime()) / 1000) );
+            }
+        }
     }
 }
