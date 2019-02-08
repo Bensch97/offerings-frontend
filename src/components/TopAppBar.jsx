@@ -37,22 +37,22 @@ const styles = {
   };
 
 const RightContainer = styled.div`
-  display: flex;
-  align-items: center;
-  && {
-    @media(max-width: 600px) {
-      display: none;
+    display: flex;
+    align-items: center;
+    && {
+      @media(max-width: 600px) {
+        display: none;
+      }
     }
-  }
-`
+  `
 
 const MobileContainer = styled(MenuIcon)`
-&& {
-  @media(min-width: 600px) {
-    display: none;
-  }
-  }
-`
+  && {
+    @media(min-width: 600px) {
+      display: none;
+    }
+    }
+  `
 
 function HomeIcon(props) {
   return (
@@ -117,11 +117,23 @@ function MaterialIcon(props) {
                 <ListItemIcon>{<MaterialIcon icon='settings' />}</ListItemIcon>
                 <ListItemText>Settings</ListItemText>
               </ListItem>
-              <ListItem>
-                <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
-                <ListItemText>Sign out</ListItemText>
-              </ListItem>
-            
+              {
+                this.props.isAuthenticated ?
+
+                <ListItem>
+                  <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
+                  <ListItemText>logout</ListItemText>
+                </ListItem>
+
+                :
+                
+                <ListItem>
+                  <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
+                  <ListItemText>login</ListItemText>
+                </ListItem>
+
+              }
+              
           </List>
         </div>
       )
@@ -149,11 +161,7 @@ function MaterialIcon(props) {
           <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
               <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
-                <IconButton 
-                  className={classes.menuButton} 
-                  color="inherit" 
-                  aria-label="Menu"
-                  onClick={this.toggleDrawer('left', true)}>
+                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer('left', true)}>
                   <MobileContainer/>
                 </IconButton>
               </Typography>
@@ -171,22 +179,20 @@ function MaterialIcon(props) {
                   >
                     <AccountCircle />
                   </IconButton>
-                  <Menu
+                  <Menu 
                     id="menu-appbar"
                     anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'right',
-                    }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}} 
+                    transformOrigin={{ vertical: 'bottom', horizontal: 'right'}}
                     open={open}
                     onClose={this.handleClose}
                   >
                     <MenuItem onClick={this.handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Signout</MenuItem>
+                    {
+                      this.props.isAuthenticated ?
+                      <MenuItem onClick={this.handleClose}>Signout</MenuItem> :
+                      <MenuItem onClick={this.handleClose}>Login</MenuItem>
+                    }
                   </Menu>
                 </RightContainer>
               )}

@@ -1,19 +1,31 @@
+// React
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+
+// Redux
+import { connect } from 'react-redux';
+
+// CSS
 import { ThemeProvider } from 'styled-components';
 import './App.css';
-import Homepage from './pages/Homepage.jsx';
+
+// Pages
 import CreateOffering from './pages/CreateOffering.jsx';
+import Homepage from './pages/Homepage.jsx';
 import LoginPage from './pages/Login.jsx';
 import SignupPage from './pages/Signup.jsx';
 import MenuAppBar from './components/TopAppBar';
-import { object } from 'prop-types';
-import styled from 'styled-components';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import { connect } from 'react-redux';
 
+// Material Ui
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
+
+// Actions
+import * as actions from './store/actions/index'
+
+//React-Cookies
+import { withCookies } from 'react-cookie'
 
 const theme = createMuiTheme({
   palette: green
@@ -54,4 +66,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoLogin: () => dispatch(actions.authCheckState())
+  }
+}
+const cookieApp = withCookies(App)
+
+export default connect(mapStateToProps, mapDispatchToProps)(cookieApp);
