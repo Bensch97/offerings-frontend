@@ -1,5 +1,5 @@
 //React
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 //CSS
@@ -66,6 +66,7 @@ class LoginPage extends React.Component {
     handleLogin = (e) => {
 
         this.props.onAuth(this.state.username, this.state.password, this.state.csrfToken)
+        this.props.history.push('/');
     }
 
     render () {
