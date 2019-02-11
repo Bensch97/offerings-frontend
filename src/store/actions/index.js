@@ -56,14 +56,15 @@ export const authLogin = (username, password, csrfToken) => {
         const headers = {
             'X-CSRFToken': csrfToken
         }
-        axios.post('http://127.0.0.1:8000/api-auth/login/', {
+        axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
-            password: password
+            password: password,
         }, {
             mode: 'cors',
             headers: headers
         })
         .then(res => {
+            console.log(res);
             const token = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
@@ -81,7 +82,7 @@ export const authLogin = (username, password, csrfToken) => {
 export const authSignup = (username, email, password, first_name, last_name) => {
     return dispatch => {
         dispatch(authStart());
-        axios.post('http://127.0.0.1:8000/api-auth/login/', {
+        axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
             username: username,
             password: password,
             first_name: first_name,
