@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
-import SignupCard from '../components/SignupCard'
+import SignupCard from '../components/SignupCard';
 
 class SignupPage extends React.Component {
     render () {

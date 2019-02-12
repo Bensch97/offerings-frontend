@@ -8,19 +8,16 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+
 
 
 const styles = {
@@ -117,11 +114,23 @@ function MaterialIcon(props) {
                 <ListItemIcon>{<MaterialIcon icon='settings' />}</ListItemIcon>
                 <ListItemText>Settings</ListItemText>
               </ListItem>
-              <ListItem>
-                <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
-                <ListItemText>Sign out</ListItemText>
-              </ListItem>
-            
+              {
+                this.props.isAuthenticated ?
+
+                <ListItem>
+                  <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
+                  <ListItemText>logout</ListItemText>
+                </ListItem>
+
+                :
+                
+                <ListItem>
+                  <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
+                  <ListItemText>login</ListItemText>
+                </ListItem>
+
+              }
+              
           </List>
         </div>
       )
@@ -149,11 +158,7 @@ function MaterialIcon(props) {
           <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
               <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
-                <IconButton 
-                  className={classes.menuButton} 
-                  color="inherit" 
-                  aria-label="Menu"
-                  onClick={this.toggleDrawer('left', true)}>
+                <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer('left', true)}>
                   <MobileContainer/>
                 </IconButton>
               </Typography>
@@ -171,22 +176,20 @@ function MaterialIcon(props) {
                   >
                     <AccountCircle />
                   </IconButton>
-                  <Menu
+                  <Menu 
                     id="menu-appbar"
                     anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'right',
-                    }}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}} 
+                    transformOrigin={{ vertical: 'bottom', horizontal: 'right'}}
                     open={open}
                     onClose={this.handleClose}
                   >
                     <MenuItem onClick={this.handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Signout</MenuItem>
+                    {
+                      this.props.isAuthenticated ?
+                      <MenuItem onClick={this.handleClose}>Signout</MenuItem> :
+                      <MenuItem onClick={this.handleClose}>Login</MenuItem>
+                    }
                   </Menu>
                 </RightContainer>
               )}
