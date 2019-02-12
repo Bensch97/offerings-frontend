@@ -55,44 +55,34 @@ const styles = {
   }
 };
 
-function LoginCard(props) {
-  const { classes } = props;
-  const profileGetURL = "http://0.0.0.0:8000/api/v1/profile/"
+//object destructuring syntax
+function LoginCard({ classes, handleInputChange, handleLogin }) {
 
-  return (
-    <Card className={classes.card}>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Log in to Offerings
-        </Typography>
+
+    return (
+      <Card className={classes.card}>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+            Log in to Offerings
+          </Typography>
+          <br />
+          <form>
+              <TextField onChange={ handleInputChange } id="username" defaultValue="Username" className={classes.textField}/>
+              <br />
+              <TextField onChange={ handleInputChange } id="password" defaultValue="Password" className={classes.textField}/>
+          </form>
+        <CardActions>
+      <div className={classes.ButtonContainer}>
+        <Button onClick={ handleLogin } variant="contained" color="primary" className={classes.bootstrapRoot} >
+          Login
+        </Button>
         <br />
-        <form>
-            <TextField
-            defaultValue="Username"
-            className={classes.textField}
-                />
-            <br />
-            <TextField
-            defaultValue="Password"
-            className={classes.textField}
-                />
-        <div className={classes.ButtonContainer}>
-          <Button
-            variant="contained"
-            color="primary"
-            type='submit'
-            className={classes.bootstrapRoot}
-          >
-            Login
-          </Button>
-            <br />
-            <a href='/signup'>Don't have an account? Sign up!</a>
-        </div>
-        </form>
-      <CardActions>
-      </CardActions>
-    </Card>
-  );
-}
+        <a href='/signup'>Don't have an account? Sign up!</a>
+      </div>
+        </CardActions>
+      </Card>
+    );
+  }
+
 
 LoginCard.propTypes = {
   classes: PropTypes.object.isRequired,
