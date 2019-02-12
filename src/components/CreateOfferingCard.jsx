@@ -5,10 +5,9 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import styled, { css } from 'styled-components';
-import Input from '@material-ui/core/Input';
+import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import DropzoneWithPreview from './Dropzone'
 
 const styles = theme => ({
   cardContainer: {
@@ -79,27 +78,14 @@ const ImageDrop = styled.div`
     justify-content: center;
     align-items: center;
 `
-function MaterialIcon(props) {
-  return (
-    <i class='material-icons'>
-      {props.icon}
-    </i>
-  )
-}
-
 
 function SimpleCard(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
-  console.log(props.theme)
 
   return (
   <div className={classes.cardContainer}>
     <Card className={classes.card}>
-      <ImageDrop>
-        <MaterialIcon icon='insert_photo'/>
-        Choose a photo...
-      </ImageDrop>
+      <DropzoneWithPreview />
       <CardContent className={classes.cardChildren}>
         <TextField
         defaultValue="Title"
@@ -123,8 +109,6 @@ function SimpleCard(props) {
         Create Post
       </Button>
       </CardContent>
-      <CardActions>
-      </CardActions>
     </Card>
   </div>
   );

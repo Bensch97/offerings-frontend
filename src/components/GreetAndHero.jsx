@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import styled, { css } from 'styled-components'
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import styled from 'styled-components'
 import foodImage from "./images/bitmap.png"
 import backup1 from "./images/bitmap@2x.png"
 import backup2 from "./images/bitmap@3x.png"
 
 const HeroImage = styled.img`
-    width: 90vw;
+    width: 75%;
     height: 40vh;
 `
 const Sharing = styled.p`
