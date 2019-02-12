@@ -54,14 +54,14 @@ export const authLogin = (username, password, csrfToken) => {
     return dispatch => {
         dispatch(authStart());
         const headers = {
-            'X-CSRFToken': csrfToken
+            // 'X-CSRFToken': csrfToken
         }
         axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
             password: password,
         }, {
             mode: 'cors',
-            headers: headers
+            // headers: headers
         })
         .then(res => {
             console.log(res);
@@ -102,6 +102,7 @@ export const authSignup = (username, email, password, first_name, last_name) => 
         })
     }
 }
+
 // Checks State => ? logs out if there is no token : logs in 
 export const authCheckState = () => {
     return dispatch => {
