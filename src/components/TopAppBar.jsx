@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { withTheme } from 'styled-components'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,6 +19,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import styled from 'styled-components';
 
 
+
 const styles = {
     root: {
       flexGrow: 1,
@@ -32,22 +34,22 @@ const styles = {
   };
 
 const RightContainer = styled.div`
-    display: flex;
-    align-items: center;
-    && {
-      @media(max-width: 600px) {
-        display: none;
-      }
-    }
-  `
-
-const MobileContainer = styled(MenuIcon)`
+  display: flex;
+  align-items: center;
   && {
-    @media(min-width: 600px) {
+    @media(max-width: 600px) {
       display: none;
     }
-    }
-  `
+  }
+`
+
+const MobileContainer = styled(MenuIcon)`
+&& {
+  @media(min-width: 600px) {
+    display: none;
+  }
+  }
+`
 
 function HomeIcon(props) {
   return (

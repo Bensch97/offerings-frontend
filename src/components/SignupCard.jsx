@@ -52,6 +52,7 @@ const styles = {
       width: '100%',
       flexDirection: 'column',
       alignItems: 'center',
+      marginBottom: '1vh'
   },
   signupForm: {
       display: 'flex',
@@ -59,8 +60,10 @@ const styles = {
   }
 };
 
+
 function SignupCard(props) {
   const { classes } = props;
+  const signupPostURL = 'http://0.0.0.0:8000/api/v1/users/'
 
   return (
     <Card className={classes.card}>
@@ -68,30 +71,49 @@ function SignupCard(props) {
           Sign Up for Offerings
         </Typography>
         <br />
-        <form className={classes.signupForm}>
-            <TextField
-            defaultValue="Email"
-            className={classes.textField}
-                />
+        <form className={classes.signupForm} action={signupPostURL} method='POST'>
             <TextField
             defaultValue="Username"
+            label="Required"
+            name="username"
             className={classes.textField}
                 />
             <TextField
             defaultValue="Password"
+            label="Required"
+            name="password"
             className={classes.textField}
                 />
+            <TextField
+            defaultValue="First Name"
+            label="Required"
+            name="first_name"
+            className={classes.textField}
+                />
+            <TextField
+            defaultValue="Last Name"
+            label="Required"
+            name="last_name"
+            className={classes.textField}
+                />
+            <TextField
+            defaultValue="Email Address"
+            label="Required"
+            name="email"
+            className={classes.textField}
+                />
+          <div className={classes.ButtonContainer}>
+            <Button
+              type='submit'
+              variant="contained"
+              color="primary"
+              className={classes.bootstrapRoot}
+            >
+              Sign Up
+            </Button>
+          </div>
         </form>
       <CardActions>
-    <div className={classes.ButtonContainer}>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.bootstrapRoot}
-      >
-        Sign Up
-      </Button>
-    </div>
       </CardActions>
     </Card>
   );
