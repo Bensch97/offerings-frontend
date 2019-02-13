@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import DropzoneWithPreview from './Dropzone'
 
 const styles = theme => ({
   cardContainer: {
@@ -17,7 +18,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '50vw',
+    width: '60vw',
     height: '75vh',
     flexWrap: 'nowrap',
     marginTop: '10%',
@@ -25,13 +26,18 @@ const styles = theme => ({
     alignContent: 'space-between',
   },
   cardChildren: {
+    marginTop: '3vh',
     display: 'flex',
     flexDirection: 'column',
-    width: '100%'
+    width: '100%',
+    alignItems: 'center',
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    width: '90%',
+    marginBottom: '5vh'
+  },
+  textBox: {
+    width: '90%'
   },
   bullet: {
     display: 'inline-block',
@@ -56,34 +62,30 @@ const styles = theme => ({
     backgroundColor: 'Green',
     borderColor: 'Green',
   },
+  text: {
+    marginBottom: '10%',
+  }
 });
 
 // This is to be converted to an upload image area, is now purely stylistic
 const ImageDrop = styled.div`
     background: #F5F5F5;
     width: 100vw;
-    height: 20vh;
+    height: 50%;
+    opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
-function MaterialIcon(props) {
-  return (
-    <i class='material-icons'>
-      {props.icon}
-    </i>
-  )
-}
-
 
 function SimpleCard(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
-  console.log(props.theme)
 
   return (
   <div className={classes.cardContainer}>
     <Card className={classes.card}>
-        <MaterialIcon icon='insert_photo'/>
-      <ImageDrop>
-      </ImageDrop>
+      <DropzoneWithPreview />
       <CardContent className={classes.cardChildren}>
         <TextField
         defaultValue="Title"
@@ -95,12 +97,10 @@ function SimpleCard(props) {
             />
         <TextField
         defaultValue="Description"
-        className={classes.textField}
+        className={classes.textBox}
         variant='outlined'
             />
-        <p className={classes.textField}>Make sure to include quantity e.g. 50 lbs, 20 ct</p>
-      </CardContent>
-      <CardActions>
+        <p className={classes.text}>Make sure to include quantity e.g. 50 lbs, 20 ct</p>
       <Button
         variant="contained"
         color="primary"
@@ -108,7 +108,7 @@ function SimpleCard(props) {
       >
         Create Post
       </Button>
-      </CardActions>
+      </CardContent>
     </Card>
   </div>
   );

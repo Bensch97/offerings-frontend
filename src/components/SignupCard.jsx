@@ -5,7 +5,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 const styles = {
   card: {
@@ -103,6 +104,7 @@ function SignupCard(props) {
             className={classes.textField}
                 />
           <div className={classes.ButtonContainer}>
+          <Link to='/'>
             <Button
               type='submit'
               variant="contained"
@@ -111,6 +113,7 @@ function SignupCard(props) {
             >
               Sign Up
             </Button>
+          </Link>
           </div>
         </form>
       <CardActions>
