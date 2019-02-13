@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import '../App.css';
-import GoogleApiWrapper from '../components/MapContainer.jsx';
+import WrappedContainer from '../components/MapContainer.jsx';
 
 class PostMap extends React.Component {
     render () {
-        <GoogleApiWrapper />
+        return (
+            <WrappedContainer />
+        )
     }
 }
 

@@ -6,7 +6,7 @@ const mapStyles = {
     map: {
         position: 'absolute',
         width: '50%',
-        height: '35%'
+        height: '40%'
     }
 }
 
@@ -128,9 +128,3 @@ CurrentLocation.defaultProps = {
     centerAroundCurrentLocation: false,
     visible: true
 };
-
-export class MapContainer extends React.Component {}
-
-export default GoogleApiWrapper({
-    apiKey: (process.env.GOOGLE_API)
-})(MapContainer)
