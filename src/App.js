@@ -8,6 +8,7 @@ import CreateOffering from './pages/CreateOffering.jsx'
 import LoginPage from './pages/Login.jsx'
 import SignupPage from './pages/Signup.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
+import PostMap from './pages/PostMap.jsx'
 import MenuAppBar from './components/TopAppBar'
 import { object } from 'prop-types';
 import styled from 'styled-components'
@@ -40,6 +41,7 @@ class App extends Component {
                 <Route exact path='/login' render={() => <LoginPage />} />
                 <Route exact path='/signup' render={() => <SignupPage />} />
                 <Route exact path='/profile' render={() => <ProfilePage />} />
+                <Route exact path='/post_map' render={() => <PostMap />} />
               </Switch>
             </BrowserRouter>
             </MenuAppBar>
