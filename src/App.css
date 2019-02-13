@@ -39,3 +39,6 @@
 .material-icons.md-60 { font-size: 60px; }
 .material-icons.md-72 { font-size: 72px; }
 .material-icons.md-84 { font-size: 84px; }
+
+.material-icons.green300-active { color: rgba(63, 181, 66, 1); }
+.material-icons.green300-inactive { color: rgba(63, 181, 66, .3); }
