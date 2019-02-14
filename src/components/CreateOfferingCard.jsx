@@ -75,7 +75,7 @@ function MaterialIcon(props) {
 
 function SimpleCard(props) {
   const { classes } = props;
-  const bull = <span className={classes.bullet}>•</span>;
+  // const bull = <span className={classes.bullet}>•</span>;
   console.log(props.theme)
 
   return (

@@ -53,9 +53,9 @@ export const authLogin = (username, password, csrfToken) => {
     
     return dispatch => {
         dispatch(authStart());
-        const headers = {
-            // 'X-CSRFToken': csrfToken
-        }
+        // const headers = {
+        //     // 'X-CSRFToken': csrfToken
+        // }
         axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
             password: password,
