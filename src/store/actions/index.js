@@ -79,15 +79,17 @@ export const authLogin = (username, password, csrfToken) => {
 }
 
 
-export const authSignup = (username, email, password, first_name, last_name) => {
+export const authSignup = (username, password1, password2, first_name, last_name, email) => {
     return dispatch => {
+        console.log(username)
+        console.log(password1)
+        console.log(password2)
         dispatch(authStart());
         axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
             username: username,
-            password: password,
-            first_name: first_name,
-            last_name: last_name,
-            email: email
+            password1: password1,
+            password2: password2,
+            
         })
         .then(res => {
             const token = res.data.key;

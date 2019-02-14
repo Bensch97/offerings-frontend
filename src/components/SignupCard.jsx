@@ -63,7 +63,6 @@ const styles = {
 
 function SignupCard(props) {
   const { classes } = props;
-  const signupPostURL = 'http://0.0.0.0:8000/api/v1/users/'
 
   return (
     <Card className={classes.card}>
@@ -71,48 +70,59 @@ function SignupCard(props) {
           Sign Up for Offerings
         </Typography>
         <br />
-        <form className={classes.signupForm} action={signupPostURL} method='POST'>
             <TextField
-            defaultValue="Username"
-            label="Required"
-            name="username"
-            className={classes.textField}
-                />
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="Username"
+              id="username"
+              className={classes.textField}
+            />
             <TextField
-            defaultValue="Password"
-            label="Required"
-            name="password"
-            className={classes.textField}
-                />
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="Password"
+              id="password1"
+              className={classes.textField}
+            />
             <TextField
-            defaultValue="First Name"
-            label="Required"
-            name="first_name"
-            className={classes.textField}
-                />
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="confirm Password"
+              id="password2"
+              className={classes.textField}
+            />
             <TextField
-            defaultValue="Last Name"
-            label="Required"
-            name="last_name"
-            className={classes.textField}
-                />
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="First Name"
+              id="first_name"
+              className={classes.textField}
+            />
             <TextField
-            defaultValue="Email Address"
-            label="Required"
-            name="email"
-            className={classes.textField}
-                />
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="Last Name"
+              id="last_name"
+              className={classes.textField}
+            />
+            <TextField
+              onChange={ props.handleInputChange }
+              defaultValue=""
+              label="Email Address"
+              id="email"
+              className={classes.textField}
+            />
           <div className={classes.ButtonContainer}>
             <Button
               type='submit'
               variant="contained"
               color="primary"
               className={classes.bootstrapRoot}
+              onClick={ props.handleSignup }
             >
               Sign Up
             </Button>
           </div>
-        </form>
       <CardActions>
       </CardActions>
     </Card>

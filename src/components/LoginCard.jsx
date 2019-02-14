@@ -58,7 +58,6 @@ const styles = {
 //object destructuring syntax
 function LoginCard({ classes, handleInputChange, handleLogin }) {
 
-
     return (
       <Card className={classes.card}>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
