@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
-const styles = {
+const styles = theme => ({
   root: {
     width: '50%',
     display: 'flex',
@@ -16,27 +16,52 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
 
-function MaterialIcon(props) {
-    return (
-      <i class='material-icons green300'>
-        {props.icon}
-      </i>
-    )
-}
+class MaterialIcon extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {isTogleOm: true}
+    this,icon = ''
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+       // This binding is necessary to make `this` work in the callback
+      isTogleOn: !state.isTogleOn
+    }))
+  }
+  render () {
+        <i onClick={this.handleClick} {...this.state.isTogleOn ? class{'material-icons green300-active'}
+                                  : class{'material-icons green300-inactive'}}>
+          {icon}
+        </i>
+    }
+  }
+
 
 function NearbyAppbar(props) {
   const { classes } = props;
-  return (
+  const icons = ['apps', 'nsetion']
+  render() {
+    const items = []
+    for (const [index, value] of elements.icons() {
+      items.push(<li key={index}>{value}</li>)
+    }
+  return (        
     <div className={classes.root}>
       <AppBar position="static" style={{backgroundColor: 'white'}}>
-          <Button><MaterialIcon icon='apps' /></Button>
-          <Button><MaterialIcon icon='navigation' /></Button>
+          <IconButton>
+            <MaterialIcon icon={icons[i]} />
+          </IconButton>
       </AppBar>
     </div>
   );
-}
+}}
 
 NearbyAppbar.propTypes = {
   classes: PropTypes.object.isRequired,
