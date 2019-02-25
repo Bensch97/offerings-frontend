@@ -22,14 +22,17 @@ import CreateOffering from './pages/CreateOffering.jsx';
 import Homepage from './pages/Homepage.jsx';
 import LoginPage from './pages/Login.jsx';
 import SignupPage from './pages/Signup.jsx';
-import MenuAppBar from './components/TopAppBar';
+import NavBar from './components/NavBar';
 
 // Actions
 import * as actions from './store/actions/index'
 
 
 const theme = createMuiTheme({
-  palette: green
+  typography: {
+    useNextVariants: true,
+  },
+  palette: green,
 })
 
 const MuiStyledBridge = withStyles({}, {withTheme: true})(({ theme, children }) => {
@@ -45,7 +48,7 @@ class App extends Component {
       <React.Fragment>
         <MuiThemeProvider theme={theme}>
           <MuiStyledBridge> 
-            <MenuAppBar {...this.props}>
+            <NavBar {...this.props}>
             
               <Switch>
                 <Route exact path='/' render={() => <Homepage {...this.props}/>} />
@@ -54,7 +57,7 @@ class App extends Component {
                 <Route exact path='/signup' render={() => <SignupPage {...this.props}/>} />
               </Switch>
 
-            </MenuAppBar>
+            </NavBar>
           </MuiStyledBridge>
           </MuiThemeProvider>
         </React.Fragment>

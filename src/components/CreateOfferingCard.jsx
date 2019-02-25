@@ -30,7 +30,7 @@ const styles = theme => ({
     width: '100%'
   },
   textField: {
-    marginLeft: theme.spacing.unit,
+    marginleft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
   },
   bullet: {

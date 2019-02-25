@@ -33,7 +33,7 @@ const styles = {
       flexGrow: 1,
     },
     menuButton: {
-      marginLeft: -12,
+      marginleft: -12,
       marginRight: 20,
     },
   };
@@ -75,7 +75,7 @@ function MaterialIcon(props) {
 }
 
 
-  class MenuAppBar extends React.Component {
+  class NavBar extends React.Component {
     state = {
       auth: true,
       anchorEl: null,
@@ -154,14 +154,14 @@ function MaterialIcon(props) {
           </Drawer>
           <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
-              <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
+              <Typography variant="h6" marginleft="20" color="inherit" className={classes.grow}>
                 <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" onClick={this.toggleDrawer('left', true)}>
                   <MobileContainer/>
                 </IconButton>
               </Typography>
               {auth && (
               <RightContainer>
-                  <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
+                  <Typography variant="h6" marginleft="20" color="inherit" className={classes.grow}>
                         
                         {
                           this.props.user ?
@@ -169,7 +169,7 @@ function MaterialIcon(props) {
                           "login"
                         }
                   </Typography>
-                  <IconButton variant="h6" marginLeft="20" color="inherit" className={classes.grow}
+                  <IconButton variant="h6" marginleft="20" color="inherit" className={classes.grow}
                   
                     aria-owns={open ? 'menu-appbar' : undefined}
                     aria-haspopup="true"
@@ -201,11 +201,11 @@ function MaterialIcon(props) {
       );
     }}
   
-  MenuAppBar.propTypes = {
+  NavBar.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
-  // export default withStyles(styles)(MenuAppBar);
+  // export default withStyles(styles)(NavBar);
 
   const mapStateToProps = (state) => {
     return { 
@@ -214,4 +214,4 @@ function MaterialIcon(props) {
 }
 
 
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(MenuAppBar)));
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(NavBar)));

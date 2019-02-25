@@ -46,7 +46,7 @@ export const getUser = (token) => {
 
     return dispatch => {
         axios.get('http://127.0.0.1:8000/rest-auth/user/', {
-            headers: {'Authorization': "Token " + "e87a5d53db72644589233b40253c7a196a945202"}
+            headers: {'Authorization': "Token " + token}
         })
         .then(res => {
             dispatch(authSuccess(token, res.data))

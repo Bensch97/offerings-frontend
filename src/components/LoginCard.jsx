@@ -17,7 +17,7 @@ const styles = {
     minWidth: 275,
     height: '40%',
     marginTop: '5vh',
-    marginLeft: '10%',
+    marginleft: '10%',
     marginRight: '10%'
   },
   title: {

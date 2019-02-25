@@ -24,7 +24,7 @@ const styles = {
       width: '55%',
       height: '45%',
       marginTop: '7%',
-      marginLeft: '10%',
+      marginleft: '10%',
       marginRight: '10%'
     },
     title: {

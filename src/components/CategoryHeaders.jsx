@@ -26,7 +26,7 @@ const OfferingType = styled.h1`
 function GridListHeader(props) {
 return (
     <TitleContainer>
-        <OfferingType> {props.category} </OfferingType> <a> { props.linky } </a>
+        <OfferingType> {props.category} </OfferingType> <a href="/"> { props.linky } </a>
     </TitleContainer>
 )
 }
