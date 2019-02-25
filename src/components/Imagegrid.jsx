@@ -112,10 +112,10 @@ return (
     );
 }
 
-SingleLineGridList.PropTypes = {
-    children: PropTypes.node,
-    classes: PropTypes.object.isRequired,
-    className: PropTypes.string,
-};
+// SingleLineGridList.PropTypes = {
+//     children: PropTypes.node,
+//     classes: PropTypes.object.isRequired,
+//     className: PropTypes.string,
+// }
 
 export default withStyles(styles)(SingleLineGridList)

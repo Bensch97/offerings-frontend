@@ -1,5 +1,9 @@
+//React
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,6 +21,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import styled from 'styled-components';
 
+//Redux
+import { connect } from 'react-redux';
 
 
 const styles = {
@@ -75,7 +81,7 @@ function MaterialIcon(props) {
       anchorEl: null,
       left: false,
     };
-  
+    
     handleChange = event => {
       this.setState({ auth: event.target.checked });
     };
@@ -93,7 +99,7 @@ function MaterialIcon(props) {
         [side]: open,
       })
     )
-  
+    
     render() {
       const { classes } = this.props;
       const { auth, anchorEl } = this.state;
@@ -146,14 +152,6 @@ function MaterialIcon(props) {
               {sideList}
             </div>
           </Drawer>
-          {/* <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-              }
-              label={auth ? 'Logout' : 'Login'}
-            />
-          </FormGroup> */}
           <AppBar position="static" style={{backgroundColor:'Green'}}>
             <Toolbar>
               <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
@@ -164,8 +162,13 @@ function MaterialIcon(props) {
               {auth && (
               <RightContainer>
                   <Typography variant="h6" marginLeft="20" color="inherit" className={classes.grow}>
-                        GIVE FEEDBACK
-                    </Typography>
+                        
+                        {
+                          this.props.user ?
+                          this.props.user.username:
+                          "login"
+                        }
+                  </Typography>
                   <IconButton variant="h6" marginLeft="20" color="inherit" className={classes.grow}
                   
                     aria-owns={open ? 'menu-appbar' : undefined}
@@ -185,8 +188,8 @@ function MaterialIcon(props) {
                     <MenuItem onClick={this.handleClose}>Settings</MenuItem>
                     {
                       this.props.isAuthenticated ?
-                      <MenuItem onClick={this.handleClose}>Signout</MenuItem> :
-                      <MenuItem onClick={this.handleClose}>Login</MenuItem>
+                      <MenuItem onClick={this.handleClose} to='/login'>Signout</MenuItem> :
+                      <MenuItem onClick={this.handleClose} to='/login'>Login</MenuItem>
                     }
                   </Menu>
                 </RightContainer>
@@ -202,4 +205,13 @@ function MaterialIcon(props) {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(MenuAppBar);
+  // export default withStyles(styles)(MenuAppBar);
+
+  const mapStateToProps = (state) => {
+    return { 
+        user: state.user
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(MenuAppBar)));

@@ -2,25 +2,17 @@ import * as actionTypes from './actionTypes.js'
 import axios from 'axios';
 
 
-// const setAxiosDefaults = () => {
-//     axios.defaults.xsrfCookieName = 'csrftoken'
-//     console.log(axios.defaults.xsrfCookieName)
-//     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
-//     console.log(axios.defaults.xsrfHeaderName)
-// };
-// setAxiosDefaults();
-
-
 export const authStart = () => {
     return {
         type: actionTypes.AUTH_START
     }
 }
 
-export const authSuccess = token => {
+export const authSuccess = (token, user) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        token: token,
+        user: user
     }
 }
 
@@ -35,6 +27,7 @@ export const authFail = error => {
 export const logout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('expirationDate');
+    localStorage.removeItem('username');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
@@ -46,6 +39,19 @@ export const checkAuthTimeout = expirationTime => {
             dispatch(logout())
         }, expirationTime * 1000)
     }
+} 
+
+
+export const getUser = (token) => {
+
+    return dispatch => {
+        axios.get('http://127.0.0.1:8000/rest-auth/user/', {
+            headers: {'Authorization': "Token " + "e87a5d53db72644589233b40253c7a196a945202"}
+        })
+        .then(res => {
+            dispatch(authSuccess(token, res.data))
+        })
+    }
 }
 
 
@@ -53,23 +59,20 @@ export const authLogin = (username, password, csrfToken) => {
     
     return dispatch => {
         dispatch(authStart());
-        // const headers = {
-        //     // 'X-CSRFToken': csrfToken
-        // }
         axios.post('http://127.0.0.1:8000/rest-auth/login/', {
             username: username,
             password: password,
         }, {
             mode: 'cors',
-            // headers: headers
         })
         .then(res => {
-            console.log(res);
             const token = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
-            dispatch(authSuccess(token))
+            localStorage.setItem('username', username);
+            // dispatch(authSuccess(token))
+            dispatch(getUser(token))
             dispatch(checkAuthTimeout(3600))
         })
         .catch(err => {
@@ -79,11 +82,9 @@ export const authLogin = (username, password, csrfToken) => {
 }
 
 
+
 export const authSignup = (username, password1, password2, first_name, last_name, email) => {
     return dispatch => {
-        console.log(username)
-        console.log(password1)
-        console.log(password2)
         dispatch(authStart());
         axios.post('http://127.0.0.1:8000/rest-auth/registration/', {
             username: username,
@@ -92,10 +93,13 @@ export const authSignup = (username, password1, password2, first_name, last_name
             
         })
         .then(res => {
+            
             const token = res.data.key;
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('username', username);
+            console.log(getUser(token))
             dispatch(authSuccess(token))
             dispatch(checkAuthTimeout(3600))
         })

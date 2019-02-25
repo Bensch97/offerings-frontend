@@ -6,6 +6,7 @@ const initialState = {
     error: null,
     loading: false,
     csrfToken: null,
+    user: null,
 }
 
 const authStart = (state, action) => {
@@ -21,6 +22,7 @@ const authSuccess = (state, action) => {
         token: action.token,
         error: null, 
         loading: true,
+        user: action.user
     });
 }
 
@@ -33,7 +35,8 @@ const authFail = (state, action) => {
 
 const authLogout = (state, action) => {
     return updatedObject(state, {
-        token: null
+        token: null,
+        user: null
     });
 } 
 
