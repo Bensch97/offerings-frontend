@@ -43,7 +43,7 @@ const MuiStyledBridge = withStyles({}, {withTheme: true})(({ theme, children }) 
 
 
 class App extends Component {
-  render() {
+  render() { 
     return (
       <React.Fragment>
         <MuiThemeProvider theme={theme}>

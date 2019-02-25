@@ -1,6 +1,7 @@
 //React
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 
@@ -11,19 +12,23 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
 import List from '@material-ui/core/List';
-import Drawer from '@material-ui/core/Drawer';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import Drawer from '@material-ui/core/Drawer';
+
 import SvgIcon from '@material-ui/core/SvgIcon';
 import styled from 'styled-components';
 
 //Redux
 import { connect } from 'react-redux';
 
+//Actions
+import * as actions from '../store/actions/index';
 
 const styles = {
     root: {
@@ -68,7 +73,7 @@ function HomeIcon(props) {
 
 function MaterialIcon(props) {
   return (
-    <i class='material-icons'>
+    <i className='material-icons'>
       {props.icon}
     </i>
   )
@@ -105,34 +110,34 @@ function MaterialIcon(props) {
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
       const sideList = (
-        <div className={classes.list}>
+        <div>
           <List>
-              <ListItem>
+              <MenuItem component={Link} to='/'>
                 <ListItemIcon>{<HomeIcon />}</ListItemIcon>
                 <ListItemText>Home</ListItemText>
-              </ListItem>
-              <ListItem>
+              </MenuItem>
+              <MenuItem component={Link} to='/feedback'>
                 <ListItemIcon>{<MaterialIcon icon='report_problem' />}</ListItemIcon>
                 <ListItemText>Give feedback</ListItemText>
-              </ListItem>
-              <ListItem>
+              </MenuItem>
+              <MenuItem component={Link} to='/setting'>
                 <ListItemIcon>{<MaterialIcon icon='settings' />}</ListItemIcon>
                 <ListItemText>Settings</ListItemText>
-              </ListItem>
+              </MenuItem>
               {
                 this.props.isAuthenticated ?
 
-                <ListItem>
+                <MenuItem component={Link} to='/logout'>
                   <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
                   <ListItemText>logout</ListItemText>
-                </ListItem>
+                </MenuItem>
 
                 :
                 
-                <ListItem>
+                <MenuItem component={Link} to='/login'>
                   <ListItemIcon>{<MaterialIcon icon='undo' />}</ListItemIcon>
                   <ListItemText>login</ListItemText>
-                </ListItem>
+                </MenuItem>
 
               }
               
@@ -141,7 +146,7 @@ function MaterialIcon(props) {
       )
 
       return (
-        <div className={classes.root}>
+        <div>
           <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
             <div
               tabIndex={0}
@@ -166,7 +171,9 @@ function MaterialIcon(props) {
                         {
                           this.props.user ?
                           this.props.user.username:
-                          "login"
+
+                          <MenuItem component={ Link } to='/login'>login</MenuItem>
+
                         }
                   </Typography>
                   <IconButton variant="h6" marginleft="20" color="inherit" className={classes.grow}
@@ -180,16 +187,17 @@ function MaterialIcon(props) {
                   <Menu 
                     id="menu-appbar"
                     anchorEl={anchorEl}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}} 
+                    // anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}} 
                     transformOrigin={{ vertical: 'bottom', horizontal: 'right'}}
                     open={open}
                     onClose={this.handleClose}
                   >
                     <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                    <MenuItem component={ Link } onClick={this.handleClose} to='/signup'>Signup</MenuItem>
                     {
                       this.props.isAuthenticated ?
-                      <MenuItem onClick={this.handleClose} to='/login'>Signout</MenuItem> :
-                      <MenuItem onClick={this.handleClose} to='/login'>Login</MenuItem>
+                      <MenuItem component={ Link } onClick={this.props.logout} to='/'>Signout</MenuItem> :
+                      <MenuItem component={ Link } onClick={this.handleClose} to='/login'>Login</MenuItem>
                     }
                   </Menu>
                 </RightContainer>
@@ -212,6 +220,10 @@ function MaterialIcon(props) {
         user: state.user
     }
 }
+ const mapDispatchToProps = dispatch => {
+   return {
+     logout: () => dispatch(actions.logout())
+   }
+ }
 
-
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(NavBar)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NavBar)));

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -80,7 +80,7 @@ const tileData= [
     }
 ]
 
-function SingleLineGridList(props) {
+function ImageGrid(props) {
     const { classes } = props;
 
 return (
@@ -112,10 +112,10 @@ return (
     );
 }
 
-// SingleLineGridList.PropTypes = {
-//     children: PropTypes.node,
-//     classes: PropTypes.object.isRequired,
-//     className: PropTypes.string,
-// }
+ImageGrid.propTypes = {
+    children: PropTypes.node,
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+}
 
-export default withStyles(styles)(SingleLineGridList)
+export default withStyles(styles)(ImageGrid)

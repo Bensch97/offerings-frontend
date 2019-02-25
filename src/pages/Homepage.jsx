@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import '../App.css';
-import SingleLineGridList from '../components/ImageGrid'
+import ImageGrid from '../components/ImageGrid'
 import GreetAndHero from '../components/GreetAndHero'
 import GridListHeader from '../components/CategoryHeaders';
 
+import {withTheme} from "styled-components";
+
 class Homepage extends Component {
     render() {
+      console.log(this.props)
       return (
         <React.Fragment>
             <GreetAndHero />
             <GridListHeader category='Nearby' linky='SEE ALL'/>
-            <SingleLineGridList/>
+            <ImageGrid/>
             <GridListHeader category="Recently posted" linky='SEE ALL'/>
-            <SingleLineGridList/>
+            <ImageGrid/>
             <GridListHeader category='Your offerings' linky='NEW'/>
-            <SingleLineGridList/>
-          </React.Fragment>
+            <ImageGrid/>
+        </React.Fragment>
       );
     }
   }
 
-export default (Homepage);
+export default withTheme(Homepage);
