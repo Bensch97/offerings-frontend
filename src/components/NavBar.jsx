@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
+
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -106,6 +106,7 @@ function MaterialIcon(props) {
     )
     
     render() {
+      
       const { classes } = this.props;
       const { auth, anchorEl } = this.state;
       const open = Boolean(anchorEl);
@@ -123,6 +124,10 @@ function MaterialIcon(props) {
               <MenuItem component={Link} to='/setting'>
                 <ListItemIcon>{<MaterialIcon icon='settings' />}</ListItemIcon>
                 <ListItemText>Settings</ListItemText>
+              </MenuItem>
+              <MenuItem component={Link} to='/signup'>
+                <ListItemIcon>{<MaterialIcon icon='settings' />}</ListItemIcon>
+                <ListItemText>Signup</ListItemText>
               </MenuItem>
               {
                 this.props.isAuthenticated ?

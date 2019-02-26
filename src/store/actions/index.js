@@ -3,12 +3,14 @@ import axios from 'axios';
 
 
 export const authStart = () => {
+    console.log('authStart')
     return {
         type: actionTypes.AUTH_START
     }
 }
 
 export const authSuccess = (token, user) => {
+    console.log('authSuccess')
     return {
         type: actionTypes.AUTH_SUCCESS,
         token: token,
@@ -25,7 +27,7 @@ export const authFail = error => {
 
 //removes items from localstorage
 export const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('username');
     return {
@@ -90,6 +92,9 @@ export const authSignup = (username, password1, password2, first_name, last_name
             username: username,
             password1: password1,
             password2: password2,
+            first_name: first_name,
+            last_name: last_name,
+            email: email
             
         })
         .then(res => {
@@ -99,8 +104,7 @@ export const authSignup = (username, password1, password2, first_name, last_name
             localStorage.setItem('token', token);
             localStorage.setItem('expirationDate', expirationDate);
             localStorage.setItem('username', username);
-            console.log(getUser(token))
-            dispatch(authSuccess(token))
+            dispatch(getUser(token))
             dispatch(checkAuthTimeout(3600))
         })
         .catch(err => {
@@ -112,15 +116,20 @@ export const authSignup = (username, password1, password2, first_name, last_name
 // Checks State => ? logs out if there is no token : logs in 
 export const authCheckState = () => {
     return dispatch => {
+        console.log('checking')
         const token = localStorage.getItem('token');
         if (token === undefined) {
+            console.log('token undefined')
             dispatch(logout());
+            
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             if ( expirationDate <= new Date() ) {
+                console.log('session expired')
                 dispatch(logout());
             } else {
-                dispatch(authSuccess(token));
+                console.log('session restored')
+                dispatch(getUser(token));
                 dispatch(checkAuthTimeout( (expirationDate.getTime() - new Date().getTime()) / 1000) );
             }
         }

@@ -43,6 +43,11 @@ const MuiStyledBridge = withStyles({}, {withTheme: true})(({ theme, children }) 
 
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.onTryAutoLogin();
+  }
+
   render() { 
     return (
       <React.Fragment>
@@ -66,7 +71,7 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.token != null
+    isAuthenticated: state.token !== null
   }
 }
 
